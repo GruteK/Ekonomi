@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Ekonomi</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f1f1f">
+<link rel="icon" type="image/png" sizes="192x192" href="ikon-192.png">
+<link rel="apple-touch-icon" href="ikon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Ekonomi">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #1f1f1f; overflow: hidden; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; }
+</style>
+</head>
+<body>
+<iframe id="ram" allow="clipboard-write; clipboard-read; fullscreen" allowfullscreen title="Ekonomi"></iframe>
+<script>
+  // Ekonomins mobilsida som app. Live-adressen (menyn Ekonomi → Live-adress i kalkylarket).
+  var EXEC = 'https://script.google.com/macros/s/AKfycbypf7PFTiU8CJvVdDUE-ZrRmjd012-YDWsg5UDwdDii16Y2hHgJrXQ7F3M9qnW6uwSJ/exec';
+  var q = new URLSearchParams(location.search);
+  if (!q.has('sida') && !q.has('vy')) q.set('sida', 'mobil');
+  document.getElementById('ram').src = EXEC + '?' + q.toString();
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+</script>
+</body>
+</html>
